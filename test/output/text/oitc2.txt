@@ -1,0 +1,7 @@
+   A   
+ BBAAA 
+BBBCCCC
+ EEECD 
+   E   
+Waktu pencarian : 1 ms.
+Banyak kasus yang ditinjau : 10290 kasus.

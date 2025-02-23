@@ -1,0 +1,7 @@
+AGGGC
+AABCC
+EEBBF
+EEDFF
+EDDFF
+Waktu pencarian : 14 ms.
+Banyak kasus yang ditinjau : 1313850 kasus.
