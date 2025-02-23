@@ -234,9 +234,9 @@ public class Main {
         System.out.println("                  BISMILLAH DAPAT A - 100                  ");
         System.out.println("-----------------------------------------------------------");
         System.out.println("IDENTITAS PEMBUAT :                                        ");
-        System.out.println("Nama : Muhammad Raihan Nazhim Oktana                       ");
-        System.out.println("NIM  : 13523021 / IF-G / K-01                              ");
-        System.out.println("-----------------------------------------------------------"); 
+        System.out.println("Nama     : Muhammad Raihan Nazhim Oktana                   ");
+        System.out.println("NIM      : 13523021 / IF-G / K-01                          ");
+        System.out.println("Instansi : Teknik Informatika - Institut Teknologi Bandung "); 
         scanner.close();
     }
 

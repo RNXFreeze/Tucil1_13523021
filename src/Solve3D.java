@@ -24,13 +24,32 @@ public class Solve3D {
 
     public static final String RESET = "\u001B[0m";
     public static final String[] LIST_WARNA = {
-        "\u001B[31m", "\u001B[32m", "\u001B[33m", "\u001B[34m",
-        "\u001B[35m", "\u001B[36m", "\u001B[37m", "\u001B[90m",
-        "\u001B[91m", "\u001B[92m", "\u001B[93m", "\u001B[94m",
-        "\u001B[95m", "\u001B[96m", "\u001B[97m", "\u001B[31m",
-        "\u001B[32m", "\u001B[33m", "\u001B[34m", "\u001B[35m",
-        "\u001B[36m", "\u001B[37m", "\u001B[90m", "\u001B[91m",
-        "\u001B[92m", "\u001B[93m"
+        "\u001B[31m", // Merah
+        "\u001B[32m", // Hijau
+        "\u001B[33m", // Kuning
+        "\u001B[34m", // Biru
+        "\u001B[35m", // Magenta
+        "\u001B[36m", // Cyan
+        "\u001B[91m", // Merah Terang
+        "\u001B[92m", // Hijau Terang
+        "\u001B[93m", // Kuning Terang
+        "\u001B[94m", // Biru Terang
+        "\u001B[95m", // Magenta Terang
+        "\u001B[96m", // Cyan Terang
+        "\u001B[90m", // Abu-abu Gelap
+        "\u001B[37m", // Abu-abu Terang
+        "\u001B[38;5;160m", // Merah Gelap
+        "\u001B[38;5;28m", // Hijau Gelap
+        "\u001B[38;5;220m", // Kuning Emas
+        "\u001B[38;5;21m", // Biru Gelap
+        "\u001B[38;5;129m", // Lavender
+        "\u001B[38;5;87m", // Biru Langit Terang
+        "\u001B[38;5;123m", // Biru Cyan Terang
+        "\u001B[38;5;227m", // Kuning Cerah
+        "\u001B[38;5;208m", // Oranye
+        "\u001B[38;5;196m", // Merah Cerah
+        "\u001B[38;5;245m", // Abu-abu Tua
+        "\u001B[38;5;243m" // Abu-abu Sedang
     };
 
     public static boolean check_full_3D() {

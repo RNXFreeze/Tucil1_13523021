@@ -25,7 +25,35 @@ import java.io.PrintWriter;
 public class SaveFile {
 
     public static final String BASE_DIRECTORY_OUT = "../test/output/";
-
+    public static final Color[] colorMap = {
+        new Color(255 , 0 , 0),      // Merah
+        new Color(0 , 255 , 0),      // Hijau
+        new Color(255 , 255 , 0),    // Kuning
+        new Color(0 , 0 , 255),      // Biru
+        new Color(255 , 0 , 255),    // Magenta
+        new Color(0 , 255 , 255),    // Cyan
+        new Color(255 , 175 , 175),  // Pink Muda
+        new Color(64 , 64 , 64),     // Abu-abu Gelap
+        new Color(255 , 165 , 0),    // Oranye
+        new Color(192 , 192 , 192),  // Abu-abu Terang
+        new Color(128 , 128 , 128),  // Abu-abu
+        new Color(255 , 105 , 180),  // Pink Cerah
+        new Color(100 , 150 , 200),  // Biru Muda Custom
+        new Color(150 , 100 , 200),  // Ungu Muda Custom
+        new Color(210 , 105 , 30),   // Coklat
+        new Color(255 , 69 , 0),     // Merah Oranye
+        new Color(154 , 205 , 50),   // Kuning Hijau
+        new Color(255 , 215 , 0),    // Emas
+        new Color(0 , 191 , 255),    // Biru Langit Cerah
+        new Color(199 , 21 , 133),   // Merah Magenta
+        new Color(72 , 209 , 204),   // Biru Hijau Medium
+        new Color(218 , 112 , 214),  // Orchid
+        new Color(188 , 143 , 143),  // Pink Abu-Abu
+        new Color(255 , 140 , 0),    // Oranye Gelap
+        new Color(173 , 216 , 230),  // Biru Muda
+        new Color(244 , 164 , 96)    // Pasir
+    };
+    
     public static boolean save_text_2D(String file_name , char[][] board , long time , long cnt , String arg) {
         String[] list_illegal_char = {"/" , "\\" , ":" , "*" , "?" , "\"" , "<" , ">" , "|"};
         StringBuilder found_illegal = new StringBuilder();
@@ -107,16 +135,7 @@ public class SaveFile {
                         }
                         else if ('A' <= ch && ch <= 'Z') {
                             int idx = ch - 'A';
-                            Color[] colorMap = {
-                                Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE,
-                                Color.MAGENTA, Color.CYAN, Color.PINK, Color.DARK_GRAY,
-                                Color.ORANGE, Color.LIGHT_GRAY, Color.GRAY, Color.BLACK,
-                                new Color(100,150,200), new Color(150,100,200), Color.WHITE,
-                                Color.RED, Color.GREEN, Color.YELLOW, Color.BLUE,
-                                Color.MAGENTA, Color.CYAN, Color.PINK, Color.DARK_GRAY,
-                                Color.ORANGE, Color.LIGHT_GRAY, Color.GRAY
-                            };
-                            if (idx >=0 && idx < colorMap.length) {
+                            if (idx >= 0 && idx < colorMap.length) {
                                 color = colorMap[idx];
                             }
                         } else if (ch == ' ') {

@@ -225,10 +225,10 @@ public class ReadFile {
                 char c = str.charAt(y);
                 if (c == name) {
                     opos.add(new Puzzle.Koordinat(x , y));
-                    if (x < mir) mir = x;
-                    if (y < mic) mic = y;
-                    if (x > mar) mar = x;
-                    if (y > mac) mac = y;
+                    mir = Math.min(mir , x);
+                    mic = Math.min(mic , y);
+                    mar = Math.max(mar , x);
+                    mac = Math.max(mac , y);
                 }
             }
         }
