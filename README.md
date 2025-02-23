@@ -31,5 +31,7 @@ java src.Main
 
 ## Author
 Nama     : Muhammad Raihan Nazhim Oktana
+<br>
 NIM      : 13523021 / K01
+<br>
 Instansi : Teknik Informatika (IF-G) - Institut Teknologi Bandung (ITB)
