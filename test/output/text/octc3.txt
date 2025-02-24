@@ -1,0 +1,6 @@
+AA  
+ AA 
+ AB 
+  BB
+Waktu pencarian : 1 ms.
+Banyak kasus yang ditinjau : 192 kasus.

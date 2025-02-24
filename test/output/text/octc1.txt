@@ -1,0 +1,6 @@
+CCCD
+C  D
+A  B
+AABB
+Waktu pencarian : 2 ms.
+Banyak kasus yang ditinjau : 288 kasus.
