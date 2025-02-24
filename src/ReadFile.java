@@ -19,7 +19,6 @@ package src;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
@@ -31,7 +30,6 @@ public class ReadFile {
 
     public static boolean read_file(String file_name) {
         String[] list_illegal_char = {"/" , "\\" , ":" , "*" , "?" , "\"" , "<" , ">" , "|"};
-        String[] allowed_name = {"A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I" , "J" , "K" , "L" , "M" , "N" , "O" , "P" , "Q" , "R" , "S" , "T" , "U" , "V" , "W" , "X" , "Y" , "Z"};
         StringBuilder found_illegal = new StringBuilder();
         for (String e : list_illegal_char) {
             if (file_name.contains(e)) {
@@ -149,19 +147,10 @@ public class ReadFile {
                                     break;
                                 }
                                 char f = line_comp.trim().charAt(0);
-                                if ((!Arrays.asList(allowed_name).contains(String.valueOf(f)))) {
-                                    System.out.println("Error : Potongan puzzle memiliki karakter yang tidak valid.");
-                                    scn.close();
-                                    return false;
-                                }
                                 target = f;
                                 for (int j = 0 ; j < line_comp.length() ; j++) {
                                     if (line_comp.charAt(j) != ' ' && line_comp.charAt(j) != target) {
                                         System.out.println("Error : Baris potongan puzzle mengandung huruf campuran : " + line_comp + ".");
-                                        scn.close();
-                                        return false;
-                                    } else if ((!Arrays.asList(allowed_name).contains(String.valueOf(line_comp.charAt(j))))) {
-                                        System.out.println("Error : Potongan puzzle memiliki karakter yang tidak valid.");
                                         scn.close();
                                         return false;
                                     }
@@ -184,11 +173,6 @@ public class ReadFile {
                                     break;
                                 }
                                 char f = line.trim().charAt(0);
-                                if ((!Arrays.asList(allowed_name).contains(String.valueOf(f)))) {
-                                    System.out.println("Error : Potongan puzzle memiliki karakter yang tidak valid.");
-                                    scn.close();
-                                    return false;
-                                }
                                 if (i == 0 && !over) {
                                     target = f;
                                     over = true;
@@ -208,10 +192,6 @@ public class ReadFile {
                                     char ch = line.charAt(c);
                                     if (ch != ' ' && ch != target) {
                                         System.out.println("Error : Baris potongan puzzle mengandung huruf campuran : " + line + ".");
-                                        scn.close();
-                                        return false;
-                                    } else if ((!Arrays.asList(allowed_name).contains(String.valueOf(ch)))) {
-                                        System.out.println("Error : Potongan puzzle memiliki karakter yang tidak valid.");
                                         scn.close();
                                         return false;
                                     }
