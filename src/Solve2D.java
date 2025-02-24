@@ -10,7 +10,6 @@
 // Deskripsi : Subprogram F03 - Solve2D
 
 // KAMUS
-// KAMUS
 // Solve2D : class
 // check_full_2D , solve_2D , check_spot_2D , fill_2D , show_board : function
 // RESET : String
