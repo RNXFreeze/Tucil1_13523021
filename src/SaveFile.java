@@ -13,6 +13,7 @@
 // SaveFile : class
 // save_text_2D , save_image_2D : Function
 // BASE_DIRECTORY_OUT : String
+// LIST_COLOR : List of String
 
 // ALGORITMA
 package src;
@@ -25,7 +26,7 @@ import java.io.PrintWriter;
 public class SaveFile {
 
     public static final String BASE_DIRECTORY_OUT = "../test/output/";
-    public static final Color[] colorMap = {
+    public static final Color[] LIST_COLOR = {
         new Color(255 , 0 , 0),      // Merah
         new Color(0 , 255 , 0),      // Hijau
         new Color(255 , 255 , 0),    // Kuning
@@ -135,8 +136,8 @@ public class SaveFile {
                         }
                         else if ('A' <= ch && ch <= 'Z') {
                             int idx = ch - 'A';
-                            if (idx >= 0 && idx < colorMap.length) {
-                                color = colorMap[idx];
+                            if (idx >= 0 && idx < LIST_COLOR.length) {
+                                color = LIST_COLOR[idx];
                             }
                         } else if (ch == ' ') {
                             color = Color.BLACK;

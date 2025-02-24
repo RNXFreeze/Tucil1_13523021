@@ -20,10 +20,29 @@ import java.util.List;
 public class Puzzle {
 
     public static class Koordinat {
+
         public int x , y;
+
         public Koordinat(int x , int y) {
             this.x = x;
             this.y = y;
+        }
+        
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            } else if (obj == null || getClass() != obj.getClass()) {
+                return false;
+            } else {
+                Koordinat ot = (Koordinat) obj;
+                return (x == ot.x && y == ot.y);
+            }
+        }
+        
+        @Override
+        public int hashCode() {
+            return 31 * x + y;
         }
     }
 

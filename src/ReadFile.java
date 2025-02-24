@@ -11,7 +11,7 @@
 
 // KAMUS
 // ReadFile : class
-// read_file : Function
+// read_file , build_piece , connected : Function
 // BASE_DIRECTORY_IN : String
 
 // ALGORITMA
@@ -21,6 +21,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 import src.Puzzle.PuzzlePiece;
 
 public class ReadFile {
@@ -97,7 +98,7 @@ public class ReadFile {
                             Main.s = scn.next().trim();
                             scn.nextLine();
                             if (!Main.s.equals("DEFAULT") && !Main.s.equals("CUSTOM") && !Main.s.equals("PYRAMID")) {
-                                System.out.println("Error: Tipe puzzle hanya ada DEFAULT / CUSTOM / PYRAMID.");
+                                System.out.println("Error : Tipe puzzle hanya ada DEFAULT / CUSTOM / PYRAMID.");
                                 scn.close();
                                 return false;
                             }
@@ -119,7 +120,7 @@ public class ReadFile {
                                         for (int y = 0 ; y < Main.m ; y++) {
                                             char c = board_line.charAt(y);
                                             if (c != '.' && c != 'X') {
-                                                System.out.println("Error: Board hanya boleh '.' atau 'X'.");
+                                                System.out.println("Error : Board hanya boleh '.' atau 'X'.");
                                                 scn.close();
                                                 return false;
                                             }
@@ -134,6 +135,7 @@ public class ReadFile {
                                 return false;
                             }
                         }
+                        List<Character> vname = new ArrayList<>();
                         scn.useDelimiter("\r?\n");
                         String line_comp = null;
                         for (int i = 0 ; i < Main.p ; i++) {
@@ -145,35 +147,39 @@ public class ReadFile {
                                     break;
                                 }
                                 char f = line_comp.trim().charAt(0);
-                                if (f == target) {
-                                    for (int j = 0 ; j < line_comp.length() ; j++) {
-                                        if (line_comp.charAt(j) != ' ' && line_comp.charAt(j) != target) {
-                                            System.out.println("Error : Baris piece mengandung huruf campuran : " + line_comp + ".");
-                                            scn.close();
-                                            return false;
-                                        }
+                                target = f;
+                                for (int j = 0 ; j < line_comp.length() ; j++) {
+                                    if (line_comp.charAt(j) != ' ' && line_comp.charAt(j) != target) {
+                                        System.out.println("Error : Baris potongan puzzle mengandung huruf campuran : " + line_comp + ".");
+                                        scn.close();
+                                        return false;
                                     }
-                                    piece_line.add(line_comp);
-                                    check_piece = true;
-                                    line_comp = null;
-                                } else {
-                                    System.out.println("Error: Urutan huruf tidak sesuai. Ditemukan '" + f + "', padahal seharusnya '" + target + "'.");
+                                }
+                                if (vname.contains(target)) {
+                                    System.out.println("Error : Terdapat duplikat potongan puzzle '" + target + "'.");
                                     scn.close();
                                     return false;
+                                } else {
+                                    vname.add(target);
                                 }
+                                piece_line.add(line_comp);
+                                check_piece = true;
+                                line_comp = null;
                             }
+                            boolean over = false;
                             while (scn.hasNextLine()) {
                                 String line = scn.nextLine();
                                 if (line.trim().isEmpty()) {
                                     break;
                                 }
                                 char first = line.trim().charAt(0);
+                                if (i == 0 && !over) {
+                                    target = first;
+                                    over = true;
+                                    vname.add(target);
+                                }
                                 if (first != target) {
-                                    if (!check_piece) {
-                                        System.out.println("Error: Potongan ke-" + (i + 1) + " seharusnya huruf '" + target + "', tetapi inputnya huruf '" + first + "'.");
-                                        scn.close();
-                                        return false;
-                                    } else if (i == Main.p - 1) {
+                                    if (i == Main.p - 1) {
                                         System.out.println("Error : Terlalu banyak potongan. Seharusnya hanya " + Main.p + " potongan.");
                                         scn.close();
                                         return false;
@@ -185,7 +191,7 @@ public class ReadFile {
                                 for (int c = 0 ; c < line.length() ; c++) {
                                     char ch = line.charAt(c);
                                     if (ch != ' ' && ch != target) {
-                                        System.out.println("Error : Baris piece mengandung huruf campuran : " + line + ".");
+                                        System.out.println("Error : Baris potongan puzzle mengandung huruf campuran : " + line + ".");
                                         scn.close();
                                         return false;
                                     }
@@ -194,12 +200,18 @@ public class ReadFile {
                                 check_piece = true;
                             }
                             if (!check_piece) {
-                                System.out.println("Error : Potongan ke-" + (i + 1) + " (huruf " + target + ") tidak ada data.");
+                                System.out.println("Error : Potongan puzzle ke-" + (i + 1) + " tidak ada di data.");
                                 scn.close();
                                 return false;
                             }
                             PuzzlePiece piece = build_piece(piece_line , target);
-                            Main.all_piece.add(piece);
+                            if (!connected(piece.position)) {
+                                System.out.println("Error : Potongan puzzle ke-" + (i + 1) + " tidak terhubung.");
+                                scn.close();
+                                return false;
+                            } else {
+                                Main.all_piece.add(piece);
+                            }
                         }
                         scn.close();
                         return true;
@@ -239,5 +251,26 @@ public class ReadFile {
         int nh = mar - mir + 1;
         int nw = mac - mic + 1;
         return new PuzzlePiece(name , npos , nh , nw);
+    }
+
+    private static boolean connected(List<Puzzle.Koordinat> vpos) {
+        List<Puzzle.Koordinat> vvis = new ArrayList<>();
+        Stack<Puzzle.Koordinat> stack = new Stack<>();
+        stack.push(vpos.get(0));
+        while (!stack.isEmpty()) {
+            Puzzle.Koordinat cur = stack.pop();
+            if (!vvis.contains(cur)) {
+                vvis.add(cur);
+                int[] dx = {1 , 1 , 1 , 0 , 0 , -1 , -1 , -1};
+                int[] dy = {1 , 0 , -1 , 1 , -1 , 1 , 0 , -1};
+                for (int i = 0 ; i < 8 ; i++) {
+                    Puzzle.Koordinat npos = new Puzzle.Koordinat(cur.x + dx[i] , cur.y + dy[i]);
+                    if (vpos.contains(npos) && !vvis.contains(npos)) {
+                        stack.push(npos);
+                    }
+                }
+            }
+        }
+        return vvis.size() == vpos.size();
     }
 }
